@@ -12,9 +12,9 @@ class Obslog extends Eloquent {
         return $this->belongsTo('User');
     }    
     
-    public function object_id()
+    public function object()
     {
-        return $this->has_one('Object', 'id');
+        return $this->belongsTo('Object');
     }
     
     public function program_id()

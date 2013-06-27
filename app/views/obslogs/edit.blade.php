@@ -6,32 +6,31 @@
 {{ Form::model($obslog, array('method' => 'PATCH', 'route' => array('obslogs.update', $obslog->id))) }}
     <ul>
         <li>
-            {{ Form::label('user_id', 'User_id:') }}
-            {{ Form::input('number', 'user_id') }}
+            {{ Form::label('object_id', 'Object:') }}
+            <!-- {{ Form::input('number', 'object_id') }} -->
+            {{ Form::select('object_id', $objects) }}
         </li>
 
         <li>
-            {{ Form::label('object_id', 'Object_id:') }}
-            {{ Form::input('number', 'object_id') }}
+            {{ Form::label('program_id', 'Program:') }}
+            <!-- {{ Form::input('number', 'program_id') }} -->
+            {{ Form::select('program_id', $programs) }}
         </li>
 
         <li>
-            {{ Form::label('program_id', 'Program_id:') }}
-            {{ Form::input('number', 'program_id') }}
+            {{ Form::label('telescope_id', 'Telescope:') }}
+            <!-- {{ Form::input('number', 'telescope_id') }} -->
+            {{ Form::select('telescope_id', $telescopes) }}
         </li>
 
         <li>
-            {{ Form::label('telescope_id', 'Telescope_id:') }}
-            {{ Form::input('number', 'telescope_id') }}
+            {{ Form::label('detector_id', 'Detector:') }}
+            <!-- {{ Form::input('number', 'detector_id') }} -->
+            {{ Form::select('detector_id', $detectors) }}
         </li>
 
         <li>
-            {{ Form::label('detector_id', 'Detector_id:') }}
-            {{ Form::input('number', 'detector_id') }}
-        </li>
-
-        <li>
-            {{ Form::label('filter_id', 'Filter_id:') }}
+            {{ Form::label('filter_id', 'Filter:') }}
             <!-- {{ Form::input('number', 'filter_id') }} -->
             {{ Form::select('filter_id', $filters) }}
         </li>

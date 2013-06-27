@@ -16,8 +16,12 @@
         <div class="container">
         
             <ul class="nav nav-pills">
-                <li><a href="{{ URL::route('filters.index') }}"><i></i> Filters</a></li>
                 <li><a href="{{ URL::route('obslogs.index') }}"><i></i> Obslogs</a></li>
+                <li><a href="{{ URL::route('objects.index') }}"><i></i> Objects</a></li>
+                <li><a href="{{ URL::route('programs.index') }}"><i></i> Programs</a></li>
+                <li><a href="{{ URL::route('telescopes.index') }}"><i></i> Telescopes</a></li>
+                <li><a href="{{ URL::route('detectors.index') }}"><i></i> Detectors</a></li>
+                <li><a href="{{ URL::route('filters.index') }}"><i></i> Filters</a></li>
                  @if (Auth::check())
                 <li><a href="/logout"><i></i> Logout</a></li>
                  @else

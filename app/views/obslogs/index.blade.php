@@ -10,20 +10,20 @@
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
-                <th>User_id</th>
-				<th>Object_id</th>
-				<th>Program_id</th>
-				<th>Telescope_id</th>
-				<th>Detector_id</th>
-				<th>Filter_id</th>
+                <th>User</th>
+				<th>Object</th>
+				<th>Program</th>
+				<th>Telescope</th>
+				<th>Detector</th>
+				<th>Filter</th>
             </tr>
         </thead>
 
         <tbody>
             @foreach ($obslogs as $obslog)
                 <tr>
-                    <td>{{{ $obslog->user_id }}}</td>
-					<td>{{{ $obslog->object_id }}}</td>
+                    <td>{{{ $obslog->user->email }}}</td>
+					<td>{{{ $obslog->object->name }}}</td>
 					<td>{{{ $obslog->program_id }}}</td>
 					<td>{{{ $obslog->telescope_id }}}</td>
 					<td>{{{ $obslog->detector_id }}}</td>

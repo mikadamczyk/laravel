@@ -7,28 +7,27 @@
 {{ Form::open(array('route' => 'obslogs.store')) }}
     <ul>
         <li>
-            {{ Form::label('user_id', 'User_id:') }}
-            {{ Form::input('number', 'user_id') }}
-        </li>
-
-        <li>
             {{ Form::label('object_id', 'Object_id:') }}
-            {{ Form::input('number', 'object_id') }}
+            <!-- {{ Form::input('number', 'object_id') }} -->
+            {{ Form::select('object_id', $objects) }}
         </li>
 
         <li>
             {{ Form::label('program_id', 'Program_id:') }}
-            {{ Form::input('number', 'program_id') }}
+            <!-- {{ Form::input('number', 'program_id') }} -->
+            {{ Form::select('program_id', $programs) }}
         </li>
 
         <li>
             {{ Form::label('telescope_id', 'Telescope_id:') }}
-            {{ Form::input('number', 'telescope_id') }}
+            <!-- {{ Form::input('number', 'telescope_id') }} -->
+            {{ Form::select('telescope_id', $telescopes) }}
         </li>
 
         <li>
             {{ Form::label('detector_id', 'Detector_id:') }}
-            {{ Form::input('number', 'detector_id') }}
+            <!-- {{ Form::input('number', 'detector_id') }} -->
+            {{ Form::select('detector_id', $detectors) }}
         </li>
 
         <li>

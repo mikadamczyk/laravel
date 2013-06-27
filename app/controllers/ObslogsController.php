@@ -12,6 +12,7 @@ class ObslogsController extends BaseController {
     public function __construct(Obslog $obslog)
     {
         $this->obslog = $obslog;
+        
     }
 
     /**
@@ -22,7 +23,10 @@ class ObslogsController extends BaseController {
     public function index()
     {
 //         $obslogs = $this->obslog->all();
-        $obslogs = Obslog::with('filter')->get();
+        $obslogs = Obslog::with('filter')
+        ->with('object')
+        ->with('user')
+        ->get();
         return View::make('obslogs.index', compact('obslogs'));
     }
 
@@ -33,8 +37,12 @@ class ObslogsController extends BaseController {
      */
     public function create()
     {
+        $objects = Object::lists('name', 'id');
+        $programs = Program::lists('name', 'id');
+        $telescopes = Telescope::lists('name', 'id');
+        $detectors = Detector::lists('name', 'id');
         $filters = Filter::lists('name', 'id');
-        return View::make('obslogs.create', compact('filters'));
+        return View::make('obslogs.create', compact('objects', 'programs', 'telescopes', 'detectors', 'filters'));
     }
 
     /**
@@ -49,8 +57,8 @@ class ObslogsController extends BaseController {
 
         if ($validation->passes())
         {
+            $input['user_id'] = Auth::user()->id;
             $this->obslog->create($input);
-
             return Redirect::route('obslogs.index');
         }
 
@@ -82,13 +90,17 @@ class ObslogsController extends BaseController {
     public function edit($id)
     {
         $obslog = $this->obslog->find($id);
+        $objects = Object::lists('name', 'id');
+        $programs = Program::lists('name', 'id');
+        $telescopes = Telescope::lists('name', 'id');
+        $detectors = Detector::lists('name', 'id');
         $filters = Filter::lists('name', 'id');
         if (is_null($obslog))
         {
             return Redirect::route('obslogs.index');
         }
 
-        return View::make('obslogs.edit', compact('obslog', 'filters'));
+        return View::make('obslogs.edit', compact('obslog', 'objects', 'programs', 'telescopes', 'detectors', 'filters'));
     }
 
     /**
