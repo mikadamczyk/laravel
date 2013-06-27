@@ -1,0 +1,8 @@
+Tworzy tabelę (pustą)
+php artisan migrate:make create_custom_table --table=custom --create 
+
+Ustawienie pól dla stworzonej tabeli
+app/database/migrations
+
+Dodaje pola tabeli na podstawie konfiguracji w pliku migracji
+php artisan migrate 

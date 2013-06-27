@@ -11,7 +11,31 @@
 |
 */
 
-Route::get('/', function()
+// Route::get('/', function()
+// {
+// 	return View::make('hello');
+// });
+Route::get('/', array('before' => 'auth' ,function()
 {
-	return View::make('hello');
+    return 'Hello, '.Auth::user()->email.'!';
+}));
+
+Route::get('/login', function()
+{
+    return View::make('login');
 });
+
+Route::post('/login', function()
+{
+    // Validation? Not in my quickstart!
+    // No, but really, I'm a bad person for leaving that out
+    Auth::attempt( array('email' => Input::get('email'), 'password' => Input::get('password')) );
+
+    return Redirect::to('/');
+});
+
+Route::get('users', array('before' => 'auth', function()
+{
+    $users = User::all();
+    return View::make('users')->with('users',$users);
+}));
