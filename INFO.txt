@@ -6,3 +6,24 @@ app/database/migrations
 
 Dodaje pola tabeli na podstawie konfiguracji w pliku migracji
 php artisan migrate 
+
+Uruchamiane po dodaniu paczki do composer.json
+Loading composer repositories with package information, updating dependencies
+composer update 
+
+::Main object
+php artisan generate:scaffold obslogs --fields="user_id:integer, object_id:integer, program_id:integer, telescope_id:integer, detector_id:integer, filter_id:integer"
+php artisan generate:scaffold techlogs --fields="user_id:integer, device_id:integer, type_id:integer, title:string, description:text:nullable, try_to_fix:text:nullable,remarks:text:nullable"
+php artisan generate:scaffold messages --fields="user_id:integer, title:string, description:text:nullable, sticky:integer"
+
+::Obslogs relations
+php artisan generate:scaffold objects --fields="deleted:integer, hidden:integer, name:string"
+php artisan generate:scaffold programs --fields="deleted:integer, hidden:integer, name:string"
+php artisan generate:scaffold telescopes --fields="deleted:integer, hidden:integer, name:string"
+php artisan generate:scaffold detectors --fields="deleted:integer, hidden:integer, name:string"
+php artisan generate:scaffold filters --fields="deleted:integer, hidden:integer, name:string"
+
+::Techlogs relations
+php artisan generate:scaffold devices --fields="deleted:integer, hidden:integer, name:string"
+php artisan generate:scaffold types --fields="deleted:integer, hidden:integer, name:string"
+

@@ -20,6 +20,11 @@ Route::get('/', array('before' => 'auth' ,function()
     return 'Hello, '.Auth::user()->email.'!';
 }));
 
+Route::get('/logout', function() {
+    Auth::logout();
+    return Redirect::to('login');
+});
+
 Route::get('/login', function()
 {
     return View::make('login');
@@ -39,3 +44,30 @@ Route::get('users', array('before' => 'auth', function()
     $users = User::all();
     return View::make('users')->with('users',$users);
 }));
+
+Route::resource('objects', 'ObjectsController');
+
+Route::resource('programs', 'ProgramsController');
+
+Route::resource('telescopes', 'TelescopesController');
+
+Route::resource('detectors', 'DetectorsController');
+
+Route::resource('filters', 'FiltersController');
+
+Route::resource('devices', 'DevicesController');
+
+Route::resource('types', 'TypesController');
+
+Route::resource('obslogs', 'ObslogsController');
+
+Route::resource('techlogs', 'TechlogsController');
+
+Route::resource('messages', 'MessagesController');
+
+
+
+
+
+
+
