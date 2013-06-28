@@ -26,6 +26,7 @@ class ObslogsController extends BaseController {
         $obslogs = Obslog::with('filter')
         ->with('object')
         ->with('user')
+        ->with('program')
         ->get();
         return View::make('obslogs.index', compact('obslogs'));
     }

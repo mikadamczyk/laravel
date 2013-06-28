@@ -4,7 +4,8 @@ class Obslog extends Eloquent {
     protected $guarded = array();
 
     public static $rules = array(
-		'filter_id' => 'required'
+		'program_id' => 'required',
+		'object_id' => 'required'
 	);
     
     public function user()
@@ -17,19 +18,19 @@ class Obslog extends Eloquent {
         return $this->belongsTo('Object');
     }
     
-    public function program_id()
+    public function program()
     {
-        return $this->has_one('Program', 'id');
+        return $this->belongsTo('Program');
     }
     
-    public function telescope_id()
+    public function telescope()
     {
-        return $this->has_one('Telescope', 'id');
+        return $this->belongsTo('Telescope');
     }
     
-    public function detector_id()
+    public function detector()
     {
-        return $this->has_one('Detector', 'id');
+        return $this->belongsTo('Detector');
     }
     
     public function filter()

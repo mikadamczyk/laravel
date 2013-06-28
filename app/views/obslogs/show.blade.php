@@ -4,7 +4,12 @@
 
 <h1>Show Obslog</h1>
 
-<p>{{ link_to_route('obslogs.index', 'Return to all obslogs') }}</p>
+<!-- <p>{{ link_to_route('obslogs.index', 'Return to all obslogs') }}</p> -->
+<p>
+<a href="{{ route('obslogs.index') }}" class="btn btn-success"><i class="icon-white icon-circle-arrow-left"></i> 
+Return to all obslogs
+</a>
+</p>
 
 <table class="table table-striped table-bordered">
     <thead>

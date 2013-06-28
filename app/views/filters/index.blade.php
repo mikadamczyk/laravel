@@ -9,6 +9,7 @@
 <a href="{{ route('filters.create') }}" class="btn btn-success"><i class="icon-white icon-plus-sign"></i> 
 Add new filter
 </a>
+</p>
 @if ($filters->count())
     <table class="table table-striped table-bordered">
         <thead>
