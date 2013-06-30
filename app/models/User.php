@@ -11,7 +11,27 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var string
 	 */
 	protected $table = 'users';
+	
+	public static $rules = array(
+	        'real_name' => 'Required|Min:3|Max:80|Alpha',
+	        'email'     => 'Required|Between:3,64|Email|Unique:users',
+	        'password'  =>'Required|AlphaNum|Between:4,8|Confirmed',
+	        'password_confirmation'=>'Required|AlphaNum|Between:4,8'
+		);
 
+	public $timestamps = false;
+	
+/* 	public static function validate($input) {
+		$rules = array(
+	        'real_name' => 'Required|Min:3|Max:80|Alpha',
+	        'email'     => 'Required|Between:3,64|Email|Unique:users',
+	        'password'  =>'Required|AlphaNum|Between:4,8|Confirmed',
+	        'password_confirmation'=>'Required|AlphaNum|Between:4,8'
+		);
+	
+		return Validator::make($input, $rules);
+	} */
+	
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *
@@ -24,7 +44,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var array
 	 */
-	protected $fillable = array('email', 'password');
+	protected $fillable = array('real_name', 'email', 'password');
 	
 	/**
 	 * Get the unique identifier for the user.

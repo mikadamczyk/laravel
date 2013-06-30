@@ -2,23 +2,29 @@
 
 @section('main')
 
-<h1>Create Type</h1>
+<h1>Create User</h1>
 
-{{ Form::open(array('route' => 'types.store')) }}
+{{ Form::open(array('route' => 'users.store')) }}
     <ul>
-        <li>
-            {{ Form::label('deleted', 'Deleted:') }}
-            {{ Form::input('number', 'deleted') }}
-        </li>
 
         <li>
-            {{ Form::label('hidden', 'Hidden:') }}
-            {{ Form::input('number', 'hidden') }}
+            {{ Form::label('real_name', 'Name:') }}
+            {{ Form::text('real_name') }}
         </li>
-
+    
         <li>
-            {{ Form::label('name', 'Name:') }}
-            {{ Form::text('name') }}
+            {{ Form::label('email', 'Email:') }}
+            {{ Form::email('email') }}
+        </li>
+        
+        <li>
+            {{ Form::label('password', 'Password:') }}
+            {{ Form::input('password', 'password') }}
+        </li>
+        
+        <li>
+            {{ Form::label('password_confirmation', 'Password confirmation:') }}
+            {{ Form::input('password', 'password_confirmation') }}
         </li>
 
         <li>

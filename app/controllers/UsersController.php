@@ -34,7 +34,7 @@ class UsersController extends \BaseController {
      */
     public function create()
     {
-        return View::make('users.create', compact());
+        return View::make('users.create');
     }
 
     /**
@@ -50,6 +50,7 @@ class UsersController extends \BaseController {
         if ($validation->passes())
         {
 //             $input['user_id'] = Auth::user()->id;
+        	$input['password'] = Hash::make(Input::get('password'));
             $this->user->create($input);
             return Redirect::route('users.index');
         }
