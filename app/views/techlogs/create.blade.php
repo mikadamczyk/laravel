@@ -1,24 +1,39 @@
 @extends('layouts.scaffold')
 
 @section('main')
-
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.datepicker').datepicker()
+});
+</script>
 <h1>Create Techlog</h1>
 
 {{ Form::open(array('route' => 'techlogs.store')) }}
     <ul>
         <li>
-            {{ Form::label('user_id', 'User_id:') }}
-            {{ Form::input('number', 'user_id') }}
+            {{ Form::label('ed', 'Evening date:') }}
+            {{ Form::text('ed', '' ,array('class'=>'datepicker')) }}
+        </li>
+        <li>
+            {{ Form::label('jd', 'JD:') }}
+            {{ Form::input('number', 'jd') }}
+        </li>
+        <li>
+            {{ Form::label('user_id', 'User:') }}
+            <!-- {{ Form::input('number', 'user_id') }} -->
+            {{ Form::select('user_id', $users, Auth::user()->id) }}
         </li>
 
         <li>
-            {{ Form::label('device_id', 'Device_id:') }}
-            {{ Form::input('number', 'device_id') }}
+            {{ Form::label('device_id', 'Device:') }}
+            <!-- {{ Form::input('number', 'device_id') }} -->
+            {{ Form::select('device_id', $devices) }}
         </li>
 
         <li>
-            {{ Form::label('type_id', 'Type_id:') }}
-            {{ Form::input('number', 'type_id') }}
+            {{ Form::label('type_id', 'Type:') }}
+            <!-- {{ Form::input('number', 'type_id') }} -->
+            {{ Form::select('type_id', $types) }}
         </li>
 
         <li>

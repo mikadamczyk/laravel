@@ -33,7 +33,10 @@ class TechlogsController extends BaseController {
      */
     public function create()
     {
-        return View::make('techlogs.create');
+        $users = User::lists('real_name', 'id');
+        $devices = Device::lists('name', 'id');
+        $types = Type::lists('name', 'id');
+        return View::make('techlogs.create', compact('users', 'devices', 'types' ));
     }
 
     /**
@@ -81,13 +84,15 @@ class TechlogsController extends BaseController {
     public function edit($id)
     {
         $techlog = $this->techlog->find($id);
-
+        $users = User::lists('real_name', 'id');
+        $devices = Device::lists('name', 'id');
+        $types = Type::lists('name', 'id');
         if (is_null($techlog))
         {
             return Redirect::route('techlogs.index');
         }
 
-        return View::make('techlogs.edit', compact('techlog'));
+        return View::make('techlogs.edit', compact('techlog', 'users', 'devices', 'types'));
     }
 
     /**

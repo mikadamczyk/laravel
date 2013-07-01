@@ -1,23 +1,33 @@
 @extends('layouts.scaffold')
 
 @section('main')
-
 <h1>Edit Techlog</h1>
 {{ Form::model($techlog, array('method' => 'PATCH', 'route' => array('techlogs.update', $techlog->id))) }}
     <ul>
         <li>
-            {{ Form::label('user_id', 'User_id:') }}
-            {{ Form::input('number', 'user_id') }}
+            {{ Form::label('ed', 'Evening date:') }}
+            {{ Form::text('ed', $techlog['ed'] ,array('class'=>'datepicker')) }}
+        </li>
+        <li>
+            {{ Form::label('jd', 'JD:') }}
+            {{ Form::input('number', 'jd') }}
+        </li>    
+        <li>
+            {{ Form::label('user_id', 'User:') }}
+            <!-- {{ Form::input('number', 'user_id') }} -->
+            {{ Form::select('user_id', $users, Auth::user()->id) }}
         </li>
 
         <li>
-            {{ Form::label('device_id', 'Device_id:') }}
-            {{ Form::input('number', 'device_id') }}
+            {{ Form::label('device_id', 'Device:') }}
+            <!-- {{ Form::input('number', 'device_id') }} -->
+            {{ Form::select('device_id', $devices) }}
         </li>
 
         <li>
-            {{ Form::label('type_id', 'Type_id:') }}
-            {{ Form::input('number', 'type_id') }}
+            {{ Form::label('type_id', 'Type:') }}
+            <!-- {{ Form::input('number', 'type_id') }} -->
+            {{ Form::select('type_id', $types) }}
         </li>
 
         <li>
