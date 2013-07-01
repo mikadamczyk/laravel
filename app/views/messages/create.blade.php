@@ -7,8 +7,9 @@
 {{ Form::open(array('route' => 'messages.store')) }}
     <ul>
         <li>
-            {{ Form::label('user_id', 'User_id:') }}
-            {{ Form::input('number', 'user_id') }}
+            {{ Form::label('user_id', 'User:') }}
+            <!-- {{ Form::input('number', 'user_id') }} -->
+            {{ Form::select('user_id', $users, Auth::user()->id) }}
         </li>
 
         <li>

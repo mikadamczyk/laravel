@@ -32,7 +32,8 @@ class MessagesController extends BaseController {
      */
     public function create()
     {
-        return View::make('messages.create');
+        $users = User::lists('real_name', 'id');
+        return View::make('messages.create', compact('users'));
     }
 
     /**
@@ -80,13 +81,14 @@ class MessagesController extends BaseController {
     public function edit($id)
     {
         $message = $this->message->find($id);
+        $users = User::lists('real_name', 'id');
 
         if (is_null($message))
         {
             return Redirect::route('messages.index');
         }
 
-        return View::make('messages.edit', compact('message'));
+        return View::make('messages.edit', compact('message', 'users'));
     }
 
     /**

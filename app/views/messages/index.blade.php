@@ -13,7 +13,8 @@
                 <th>User_id</th>
 				<th>Title</th>
 				<th>Description</th>
-				<th>Sticky</th>
+				<th>Actions</th>
+				<th></th>
             </tr>
         </thead>
 
@@ -23,14 +24,16 @@
                     <td>{{{ $message->user->real_name }}}</td>
 					<td>{{{ $message->title }}}</td>
 					<td>{{{ $message->description }}}</td>
-					<td>{{{ $message->sticky }}}</td>
-                    <td>{{ link_to_route('messages.edit', 'Edit', array($message->id), array('class' => 'btn btn-info')) }}</td>
                     <td>
-                    @if ($message->sticky)
-                    {{ link_to_route('unstick', 'Unstick', array($message->id), array('class' => 'btn btn-info')) }}
-                    @else
-                    {{ link_to_route('stick', 'Stick', array($message->id), array('class' => 'btn btn-info')) }}
-                    @endif
+                    <div class="btn-group">
+                        {{ link_to_route('messages.edit', 'Edit', array($message->id), array('class' => 'btn')) }}
+                        {{ link_to_route('messages.show', 'Show', array($message->id), array('class' => 'btn btn-primary')) }}
+                        @if ($message->sticky)
+                            {{ link_to_route('unstick', 'Unstick', array($message->id), array('class' => 'btn btn-warning')) }}
+                        @else
+                            {{ link_to_route('stick', 'Stick', array($message->id), array('class' => 'btn btn-warning')) }}
+                        @endif                        
+                    </div>
                     </td>
 <!--                     <td>
                         {{ Form::open(array('method' => 'POST', 'route' => array('stick', $message->id))) }}

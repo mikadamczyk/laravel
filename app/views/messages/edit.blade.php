@@ -6,8 +6,9 @@
 {{ Form::model($message, array('method' => 'PATCH', 'route' => array('messages.update', $message->id))) }}
     <ul>
         <li>
-            {{ Form::label('user_id', 'User_id:') }}
-            {{ Form::input('number', 'user_id') }}
+            {{ Form::label('user_id', 'User:') }}
+            <!-- {{ Form::input('number', 'user_id') }} -->
+            {{ Form::select('user_id', $users, Auth::user()->id) }}
         </li>
 
         <li>
@@ -22,7 +23,8 @@
 
         <li>
             {{ Form::label('sticky', 'Sticky:') }}
-            {{ Form::input('number', 'sticky') }}
+            <!-- {{ Form::input('number', 'sticky') }} -->
+            {{ Form::select('sticky', array('0'=>'No', '1'=>'Yes'), 1) }}
         </li>
 
         <li>
