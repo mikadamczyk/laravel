@@ -20,11 +20,23 @@
         <tbody>
             @foreach ($messages as $message)
                 <tr>
-                    <td>{{{ $message->user_id }}}</td>
+                    <td>{{{ $message->user->real_name }}}</td>
 					<td>{{{ $message->title }}}</td>
 					<td>{{{ $message->description }}}</td>
 					<td>{{{ $message->sticky }}}</td>
                     <td>{{ link_to_route('messages.edit', 'Edit', array($message->id), array('class' => 'btn btn-info')) }}</td>
+                    <td>
+                    @if ($message->sticky)
+                    {{ link_to_route('unstick', 'Unstick', array($message->id), array('class' => 'btn btn-info')) }}
+                    @else
+                    {{ link_to_route('stick', 'Stick', array($message->id), array('class' => 'btn btn-info')) }}
+                    @endif
+                    </td>
+<!--                     <td>
+                        {{ Form::open(array('method' => 'POST', 'route' => array('stick', $message->id))) }}
+                            {{ Form::submit('Stick', array('class' => 'btn btn-info')) }}
+                        {{ Form::close() }}
+                    </td> -->
                     <td>
                         {{ Form::open(array('method' => 'DELETE', 'route' => array('messages.destroy', $message->id))) }}
                             {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}

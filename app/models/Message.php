@@ -9,8 +9,8 @@ class Message extends Eloquent {
 		'description' => 'required'
 	);
     
-    public function user_id()
+    public function user()
     {
         return $this->belongsTo('User');
-    }
+    }   
 }

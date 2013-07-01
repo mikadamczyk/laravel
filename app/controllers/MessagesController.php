@@ -21,9 +21,8 @@ class MessagesController extends BaseController {
      */
     public function index()
     {
-        $messages = $this->message->all();
-
-        return View::make('messages.index', compact('messages'));
+        $messages = Message::with('user')->get();
+        return View::make('messages.index', compact('messages', 'user'));
     }
 
     /**
@@ -127,5 +126,22 @@ class MessagesController extends BaseController {
 
         return Redirect::route('messages.index');
     }
+    
+    public function stick($id)
+    {
+        $message = $this->message->find($id);
+        $message->update(array('sticky'=>1));
+
+        return Redirect::route('messages.index');
+    }
+    
+    public function unstick($id)
+    {
+        $message = $this->message->find($id);
+        $message->update(array('sticky'=>0));
+
+        return Redirect::route('messages.index');
+    }
+    
 
 }

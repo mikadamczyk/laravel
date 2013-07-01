@@ -2,27 +2,25 @@
 
 @section('main')
 
-<h1>Show Type</h1>
+<h1>Show User</h1>
 
-<p>{{ link_to_route('types.index', 'Return to all types') }}</p>
+<p>{{ link_to_route('users.index', 'Return to all users') }}</p>
 
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
-            <th>Deleted</th>
-				<th>Hidden</th>
 				<th>Name</th>
+				<th>Email</th>
         </tr>
     </thead>
 
     <tbody>
         <tr>
-            <td>{{{ $type->deleted }}}</td>
-					<td>{{{ $type->hidden }}}</td>
-					<td>{{{ $type->name }}}</td>
-                    <td>{{ link_to_route('types.edit', 'Edit', array($type->id), array('class' => 'btn btn-info')) }}</td>
+					<td>{{{ $user->real_name }}}</td>
+					<td>{{{ $user->email }}}</td>
+                    <td>{{ link_to_route('users.edit', 'Edit', array($user->id), array('class' => 'btn btn-info')) }}</td>
                     <td>
-                        {{ Form::open(array('method' => 'DELETE', 'route' => array('types.destroy', $type->id))) }}
+                        {{ Form::open(array('method' => 'DELETE', 'route' => array('users.destroy', $user->id))) }}
                             {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
                         {{ Form::close() }}
                     </td>

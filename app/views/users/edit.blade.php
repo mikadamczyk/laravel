@@ -2,27 +2,32 @@
 
 @section('main')
 
-<h1>Edit Type</h1>
-{{ Form::model($type, array('method' => 'PATCH', 'route' => array('types.update', $type->id))) }}
+<h1>Edit User</h1>
+{{ Form::model($user, array('method' => 'PATCH', 'route' => array('users.update', $user->id))) }}
     <ul>
         <li>
-            {{ Form::label('deleted', 'Deleted:') }}
-            {{ Form::input('number', 'deleted') }}
+            {{ Form::label('real_name', 'Name:') }}
+            {{ Form::text('real_name') }}
         </li>
-
+    
         <li>
-            {{ Form::label('hidden', 'Hidden:') }}
-            {{ Form::input('number', 'hidden') }}
+            {{ Form::label('email', 'Email:') }}
+            {{ Form::email('email') }}
         </li>
-
+        
         <li>
-            {{ Form::label('name', 'Name:') }}
-            {{ Form::text('name') }}
+            {{ Form::label('password', 'Password:') }}
+            {{ Form::input('password', 'password') }}
+        </li>
+        
+        <li>
+            {{ Form::label('password_confirmation', 'Password confirmation:') }}
+            {{ Form::input('password', 'password_confirmation') }}
         </li>
 
         <li>
             {{ Form::submit('Update', array('class' => 'btn btn-info')) }}
-            {{ link_to_route('types.show', 'Cancel', $type->id, array('class' => 'btn')) }}
+            {{ link_to_route('users.show', 'Cancel', $user->id, array('class' => 'btn')) }}
         </li>
     </ul>
 {{ Form::close() }}

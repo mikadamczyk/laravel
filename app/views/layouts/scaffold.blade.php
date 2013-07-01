@@ -63,6 +63,16 @@
             </ul>
         </div>
         <div class="container">
+            <h3>Sticky Messages</h3>
+            @foreach (Message::with('user')->where('sticky','=', '1')->get() as $message)
+                <div class="well">
+                    <h4>{{{ $message->title }}}</h4>
+                    {{{ $message->user->real_name }}}: 
+    			    {{{ $message->description }}}
+                </div>
+            @endforeach
+        </div>
+        <div class="container">
             @if (Session::has('message'))
                 <div class="flash alert">
                     <p>{{ Session::get('message') }}</p>

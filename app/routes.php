@@ -27,7 +27,14 @@ Route::group(array('before' => 'auth'), function()
         Auth::logout();
         return Redirect::to('login');
     });
-    
+    Route::get('messages/stick/{id}', array('as' => 'stick', 'before' => 'auth', 'uses' => 'MessagesController@stick'));
+    Route::get('messages/unstick/{id}', array('as' => 'unstick', 'before' => 'auth', 'uses' => 'MessagesController@unstick'));
+//     Route::post('messages/stick/{id}', array('as' => 'stick', 'before' => 'auth', function($id)
+//     {
+// //         return 'Hello World'.$id;
+// //         Message::update(array('sticky'=>1));
+//         return Redirect::to('messages');
+//     }));
 //     Route::get('users', array('before' => 'auth', function()
 //     {
 //         $users = User::all();

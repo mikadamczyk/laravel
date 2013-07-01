@@ -14,7 +14,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	
 	public static $rules = array(
 	        'real_name' => 'Required|Min:3|Max:80|Alpha',
-	        'email'     => 'Required|Between:3,64|Email|Unique:users',
+	        'email'     => 'Required|Between:3,64|Email|Unique:users,id',
 	        'password'  =>'Required|AlphaNum|Between:4,8|Confirmed',
 	        'password_confirmation'=>'Required|AlphaNum|Between:4,8'
 		);
@@ -84,6 +84,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function techlogs()
 	{
 	    return $this->has_many('Techlog');
+	}
+	
+	public function messages()
+	{
+	    return $this->has_many('Message');
 	}
 
 }

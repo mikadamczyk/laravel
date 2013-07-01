@@ -100,6 +100,8 @@ class UsersController extends \BaseController {
     public function update($id)
     {
         $input = array_except(Input::all(), '_method');
+        User::$rules['password'] = 'AlphaNum|Between:4,8|Confirmed'; //by default password is required now it isn't
+        User::$rules['password_confirmation'] = 'AlphaNum|Between:4,8'; //by default password is required now it isn't
         $validation = Validator::make($input, User::$rules);
 
         if ($validation->passes())

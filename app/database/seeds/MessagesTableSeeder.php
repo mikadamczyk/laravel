@@ -15,13 +15,13 @@ class MessagesTableSeeder extends Seeder {
                     'sticky' => '1',
             ),
             array(
-                    'user_id' => '1',
+                    'user_id' => '2',
                     'title' => 'Lorem Ipsum 2',
                     'description' => 'Description 2',
                     'sticky' => '0',
             ),
             array(
-                    'user_id' => '1',
+                    'user_id' => '3',
                     'title' => 'Lorem Ipsum 3',
                     'description' => 'Description 3',
                     'sticky' => '0',
