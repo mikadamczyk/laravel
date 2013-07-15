@@ -43,7 +43,8 @@ class ObslogsController extends BaseController {
         $telescopes = Telescope::lists('name', 'id');
         $detectors = Detector::lists('name', 'id');
         $filters = Filter::lists('name', 'id');
-        return View::make('obslogs.create', compact('objects', 'programs', 'telescopes', 'detectors', 'filters'));
+        $users = User::orderBy('real_name', 'asc')->lists('real_name', 'id');
+        return View::make('obslogs.create', compact('objects', 'programs', 'telescopes', 'detectors', 'filters', 'users'));
     }
 
     /**

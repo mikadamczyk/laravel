@@ -64,6 +64,8 @@
             </ul>
         </div>
         <div class="container">
+            <div class="row">
+            <div class="span12">
             <h3>Sticky Messages</h3>
             @foreach (Message::with('user')->where('sticky','=', '1')->get() as $message)
                 <div class="well">
@@ -72,8 +74,12 @@
     			    {{{ $message->description }}}
                 </div>
             @endforeach
+            </div>
+            </div>
         </div>
         <div class="container">
+            <div class="row">
+            <div class="span12">
             @if (Session::has('message'))
                 <div class="flash alert">
                     <p>{{ Session::get('message') }}</p>
@@ -81,6 +87,8 @@
             @endif
 
             @yield('main')
+            </div>
+            </div>            
         </div>
 
     </body>

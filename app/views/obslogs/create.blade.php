@@ -4,43 +4,61 @@
 
 <h1>Create Obslog</h1>
 
-{{ Form::open(array('route' => 'obslogs.store')) }}
-    <ul>
-        <li>
-            {{ Form::label('object_id', 'Object_id:') }}
+{{ Form::open(array('route' => 'obslogs.store', 'class' => 'form-horizontal')) }}
+        <div class="control-group">
+            {{ Form::label('object_id', 'Object:', array('class'=>'control-label')) }}
             <!-- {{ Form::input('number', 'object_id') }} -->
-            {{ Form::select('object_id', $objects) }}
-        </li>
+            <div class="controls">
+                {{ Form::select('object_id', $objects) }}
+            </div>
+        </div>
 
-        <li>
-            {{ Form::label('program_id', 'Program_id:') }}
+        <div class="control-group">
+            {{ Form::label('program_id', 'Program:' , array('class'=>'control-label')) }}
             <!-- {{ Form::input('number', 'program_id') }} -->
-            {{ Form::select('program_id', $programs) }}
-        </li>
+            <div class="controls">
+                {{ Form::select('program_id', $programs) }}
+            </div>
+        </div>
 
-        <li>
-            {{ Form::label('telescope_id', 'Telescope_id:') }}
+        <div class="control-group">
+            {{ Form::label('telescope_id', 'Telescope:', array('class'=>'control-label')) }}
             <!-- {{ Form::input('number', 'telescope_id') }} -->
-            {{ Form::select('telescope_id', $telescopes) }}
-        </li>
+            <div class="controls">
+                {{ Form::select('telescope_id', $telescopes) }}
+            </div>
+        </div>
 
-        <li>
-            {{ Form::label('detector_id', 'Detector_id:') }}
+        <div class="control-group">
+            {{ Form::label('detector_id', 'Detector:', array('class'=>'control-label')) }}
             <!-- {{ Form::input('number', 'detector_id') }} -->
-            {{ Form::select('detector_id', $detectors) }}
-        </li>
+            <div class="controls">
+                {{ Form::select('detector_id', $detectors) }}
+            </div>
+        </div>
 
-        <li>
-            {{ Form::label('filter_id', 'Filter_id:') }}
+        <div class="control-group">
+            {{ Form::label('filter_id', 'Filter:', array('class'=>'control-label')) }}
             <!-- {{ Form::input('number', 'filter_id') }} -->
-            {{ Form::select('filter_id', $filters) }}
-        </li>
+            <div class="controls">
+                {{ Form::select('filter_id', $filters) }}
+            </div>
+        </div>
+        
+        <div class="control-group">
+            {{ Form::label('user_id', 'User:', array('class'=>'control-label')) }}
+            <div class="controls">
+                {{ Form::select('user_id', $users, Auth::user()->id) }}
+            </div>
+        </div>
 
-        <li>
+        <div class="control-group">
+            <div class="controls">
             {{ Form::submit('Submit', array('class' => 'btn')) }}
-        </li>
-    </ul>
-{{ Form::close() }}
+            </div>
+        </div>
+
+    {{ Form::close() }}
 
 @if ($errors->any())
     <ul>
