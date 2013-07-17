@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('FiltersTableSeeder');
 		$this->call('DevicesTableSeeder');
 		$this->call('TypesTableSeeder');
+		$this->call('ConditionsTableSeeder');
 	}
 
 }

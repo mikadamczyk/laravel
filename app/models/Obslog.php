@@ -38,5 +38,15 @@ class Obslog extends Eloquent {
         return $this->belongsTo('Filter');
     }
     
+    public function first_half()
+    {
+        return $this->belongsTo('Condition');
+    }
+    
+    public function second_half()
+    {
+        return $this->belongsTo('Condition');
+    }
+    
     
 }

@@ -44,7 +44,8 @@ class ObslogsController extends BaseController {
         $detectors = Detector::lists('name', 'id');
         $filters = Filter::lists('name', 'id');
         $users = User::orderBy('real_name', 'asc')->lists('real_name', 'id');
-        return View::make('obslogs.create', compact('objects', 'programs', 'telescopes', 'detectors', 'filters', 'users'));
+        $conditions = Condition::orderBy('name', 'asc')->lists('name', 'id');
+        return View::make('obslogs.create', compact('objects', 'programs', 'telescopes', 'detectors', 'filters', 'users', 'conditions'));
     }
 
     /**
@@ -97,12 +98,14 @@ class ObslogsController extends BaseController {
         $telescopes = Telescope::lists('name', 'id');
         $detectors = Detector::lists('name', 'id');
         $filters = Filter::lists('name', 'id');
+        $users = User::orderBy('real_name', 'asc')->lists('real_name', 'id');
+        $conditions = Condition::orderBy('name', 'asc')->lists('name', 'id');
         if (is_null($obslog))
         {
             return Redirect::route('obslogs.index');
         }
 
-        return View::make('obslogs.edit', compact('obslog', 'objects', 'programs', 'telescopes', 'detectors', 'filters'));
+        return View::make('obslogs.edit', compact('obslog', 'objects', 'programs', 'telescopes', 'detectors', 'filters', 'users', 'conditions'));
     }
 
     /**

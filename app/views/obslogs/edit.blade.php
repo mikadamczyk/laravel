@@ -1,46 +1,88 @@
 @extends('layouts.scaffold')
 
 @section('main')
+{{ HTML::script('assets/js/ed2jd.js') }}
+<script type="text/javascript">
 
+</script>
 <h1>Edit Obslog</h1>
-{{ Form::model($obslog, array('method' => 'PATCH', 'route' => array('obslogs.update', $obslog->id))) }}
-    <ul>
-        <li>
-            {{ Form::label('object_id', 'Object:') }}
+{{ Form::model($obslog, array('method' => 'PATCH', 'route' => array('obslogs.update', $obslog->id), 'class' => 'form-horizontal')) }}
+        <div class="control-group">
+            {{ Form::label('ed', 'Evening date:', array('class'=>'control-label')) }}
+            <div class="controls">
+                {{ Form::text('ed', $obslog['ed'] ,array('class'=>'datepicker')) }}
+            </div>
+        </div>
+        
+        <div class="control-group">
+            {{ Form::label('jd', 'JD:', array('class'=>'control-label')) }}
+            <div class="controls">
+                {{ Form::input('number', 'jd', null, array('disabled' => 'disabled')) }}
+            </div>
+        </div>
+        
+        <div class="control-group">
+            {{ Form::label('object_id', 'Object:', array('class'=>'control-label')) }}
             <!-- {{ Form::input('number', 'object_id') }} -->
-            {{ Form::select('object_id', $objects) }}
-        </li>
+            <div class="controls">
+                {{ Form::select('object_id', $objects) }}
+            </div>
+        </div>
 
-        <li>
-            {{ Form::label('program_id', 'Program:') }}
+        <div class="control-group">
+            {{ Form::label('program_id', 'Program:' , array('class'=>'control-label')) }}
             <!-- {{ Form::input('number', 'program_id') }} -->
-            {{ Form::select('program_id', $programs) }}
-        </li>
+            <div class="controls">
+                {{ Form::select('program_id', $programs) }}
+            </div>
+        </div>
 
-        <li>
-            {{ Form::label('telescope_id', 'Telescope:') }}
+        <div class="control-group">
+            {{ Form::label('telescope_id', 'Telescope:', array('class'=>'control-label')) }}
             <!-- {{ Form::input('number', 'telescope_id') }} -->
-            {{ Form::select('telescope_id', $telescopes) }}
-        </li>
+            <div class="controls">
+                {{ Form::select('telescope_id', $telescopes) }}
+            </div>
+        </div>
 
-        <li>
-            {{ Form::label('detector_id', 'Detector:') }}
+        <div class="control-group">
+            {{ Form::label('detector_id', 'Detector:', array('class'=>'control-label')) }}
             <!-- {{ Form::input('number', 'detector_id') }} -->
-            {{ Form::select('detector_id', $detectors) }}
-        </li>
+            <div class="controls">
+                {{ Form::select('detector_id', $detectors) }}
+            </div>
+        </div>
 
-        <li>
-            {{ Form::label('filter_id', 'Filter:') }}
+        <div class="control-group">
+            {{ Form::label('filter_id', 'Filter:', array('class'=>'control-label')) }}
             <!-- {{ Form::input('number', 'filter_id') }} -->
-            {{ Form::select('filter_id', $filters) }}
-        </li>
+            <div class="controls">
+                {{ Form::select('filter_id', $filters) }}
+            </div>
+        </div>
+        
+        <div class="control-group">
+            {{ Form::label('user_id', 'User:', array('class'=>'control-label')) }}
+            <div class="controls">
+                {{ Form::select('user_id', $users, Auth::user()->id) }}
+            </div>
+        </div>
+        
+        <div class="control-group">
+            {{ Form::label('tech_problem', 'Technical problem:', array('class'=>'control-label')) }}
+            <div class="controls">
+                {{ Form::select('tech_problem', array(0=>'No', 1=>'Yes'), 0) }}
+            </div>
+        </div>
 
-        <li>
+        <div class="control-group">
+            <div class="controls">
             {{ Form::submit('Update', array('class' => 'btn btn-info')) }}
             {{ link_to_route('obslogs.show', 'Cancel', $obslog->id, array('class' => 'btn')) }}
-        </li>
-    </ul>
-{{ Form::close() }}
+            </div>
+        </div>
+
+    {{ Form::close() }}
 
 @if ($errors->any())
     <ul>

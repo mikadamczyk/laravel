@@ -53,6 +53,8 @@ Route::group(array('before' => 'auth'), function()
     
     Route::resource('filters', 'FiltersController');
     
+    Route::resource('conditions', 'ConditionsController');
+    
     Route::resource('devices', 'DevicesController');
     
     Route::resource('types', 'TypesController');

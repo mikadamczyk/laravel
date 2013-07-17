@@ -1,10 +1,28 @@
 @extends('layouts.scaffold')
 
 @section('main')
-
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.datepicker').datepicker()
+});
+</script>
 <h1>Create Obslog</h1>
 
 {{ Form::open(array('route' => 'obslogs.store', 'class' => 'form-horizontal')) }}
+        <div class="control-group">
+            {{ Form::label('ed', 'Evening date:', array('class'=>'control-label')) }}
+            <div class="controls">
+                {{ Form::text('ed', '' ,array('class'=>'datepicker')) }}
+            </div>
+        </div>
+        
+        <div class="control-group">
+            {{ Form::label('jd', 'JD:', array('class'=>'control-label')) }}
+            <div class="controls">
+                {{ Form::input('number', 'jd', null, array('disabled' => 'disabled')) }}
+            </div>
+        </div>
+        
         <div class="control-group">
             {{ Form::label('object_id', 'Object:', array('class'=>'control-label')) }}
             <!-- {{ Form::input('number', 'object_id') }} -->
@@ -51,6 +69,13 @@
                 {{ Form::select('user_id', $users, Auth::user()->id) }}
             </div>
         </div>
+        
+        <div class="control-group">
+            {{ Form::label('techprob', 'Technical problem:', array('class'=>'control-label')) }}
+            <div class="controls">
+                {{ Form::select('techprob', array(0=>'No', 1=>'Yes'), 0) }}
+            </div>
+        </div>
 
         <div class="control-group">
             <div class="controls">
@@ -67,5 +92,3 @@
 @endif
 
 @stop
-
-
