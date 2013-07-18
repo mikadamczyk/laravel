@@ -15,14 +15,14 @@ $(document).ready(function() {
                 {{ Form::text('ed', '' ,array('class'=>'datepicker')) }}
             </div>
         </div>
-        
+
         <div class="control-group">
             {{ Form::label('jd', 'JD:', array('class'=>'control-label')) }}
             <div class="controls">
                 {{ Form::input('number', 'jd', null, array('disabled' => 'disabled')) }}
             </div>
         </div>
-        
+
         <div class="control-group">
             {{ Form::label('object_id', 'Object:', array('class'=>'control-label')) }}
             <!-- {{ Form::input('number', 'object_id') }} -->
@@ -62,18 +62,25 @@ $(document).ready(function() {
                 {{ Form::select('filter_id', $filters) }}
             </div>
         </div>
-        
+
         <div class="control-group">
             {{ Form::label('user_id', 'User:', array('class'=>'control-label')) }}
             <div class="controls">
                 {{ Form::select('user_id', $users, Auth::user()->id) }}
             </div>
         </div>
-        
+
         <div class="control-group">
-            {{ Form::label('techprob', 'Technical problem:', array('class'=>'control-label')) }}
+            {{ Form::label('tech_problem', 'Technical problem:', array('class'=>'control-label')) }}
             <div class="controls">
-                {{ Form::select('techprob', array(0=>'No', 1=>'Yes'), 0) }}
+                {{ Form::select('tech_problem', array(0=>'No', 1=>'Yes'), 0) }}
+            </div>
+        </div>
+
+        <div class="control-group">
+            {{ Form::label('obs_hours', 'Total Observing Hours at Night:', array('class'=>'control-label')) }}
+            <div class="controls">
+                {{ Form::text('obs_hours', $value = null) }}
             </div>
         </div>
 

@@ -6,17 +6,43 @@
 
 <!-- <p>{{ link_to_route('obslogs.create', 'Add new obslog') }}</p> -->
 <p>
-<a href="{{ route('obslogs.create') }}" class="btn btn-success"><i class="icon-white icon-plus-sign"></i> 
+<a href="{{ route('obslogs.create') }}" class="btn btn-success"><i class="icon-white icon-plus-sign"></i>
 Add new obslog
 </a>
 </p>
 @if ($obslogs->count())
+    <form action="" method="get" id="filter" class="form-horizontal">
+    <select name="user_id">
+            <option value="">Select User</option>
+        <?php foreach ($users as $key => $user):?>
+            <?php $selected = ($key == Input::get('user_id')) ? 'selected="selected"' : null; ?>
+            <option value="<?php echo $key ?>" <?php echo $selected ?>><?php echo $user ?></option>
+        <?php endforeach;?>
+    </select>
+    <select name="object_id">
+            <option value="">Select Object</option>
+        <?php foreach ($objects as $key => $object):?>
+            <?php $selected = ($key == Input::get('object_id')) ? 'selected="selected"' : null; ?>
+            <option value="<?php echo $key ?>" <?php echo $selected ?>><?php echo $object ?></option>
+        <?php endforeach;?>
+    </select>
+    <select name="program_id">
+            <option value="">Select Program</option>
+        <?php foreach ($programs as $key => $program):?>
+            <?php $selected = ($key == Input::get('program_id')) ? 'selected="selected"' : null; ?>
+            <option value="<?php echo $key ?>" <?php echo $selected ?>><?php echo $program ?></option>
+        <?php endforeach;?>
+    </select>
+
+    <input class="btn" type="submit" value="Filter" rel="filter">
+    </form>
+    <?php echo $pagination?>
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
-                <th>User</th>
-				<th>Object</th>
-				<th>Program</th>
+                <th><a href="<?php echo URL::to('obslogs?sort=user_id'.$querystr)?>">User</a></th>
+				<th><a href="<?php echo URL::to('obslogs?sort=object_id'.$querystr)?>">Object</a></th>
+				<th><a href="<?php echo URL::to('obslogs?sort=program_id'.$querystr)?>">Program</a></th>
 				<th>Actions</th>
 				<th>Delete</th>
             </tr>
@@ -43,6 +69,7 @@ Add new obslog
             @endforeach
         </tbody>
     </table>
+    <?php echo $pagination ?>
 @else
     There are no obslogs
 @endif

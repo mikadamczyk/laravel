@@ -12,7 +12,7 @@ class ObslogsController extends BaseController {
     public function __construct(Obslog $obslog)
     {
         $this->obslog = $obslog;
-        
+
     }
 
     /**
@@ -23,12 +23,59 @@ class ObslogsController extends BaseController {
     public function index()
     {
 //         $obslogs = $this->obslog->all();
-        $obslogs = Obslog::with('filter')
+        // CACHE SORTING INPUTS
+        $allowed = array('user_id', 'object_id', 'program_id'); // add allowable columns to search on
+        $sort = in_array(Input::get('sort'), $allowed) ? Input::get('sort') : 'id'; // if user type in the url a column that doesnt exist app will default to id
+        $order = Input::get('order') === 'asc' ? 'asc' : 'desc'; // default desc
+
+        $obslogs = Obslog::orderBy($sort, $order)->with('filter')
         ->with('object')
         ->with('user')
-        ->with('program')
-        ->get();
-        return View::make('obslogs.index', compact('obslogs'));
+        ->with('program');
+
+        // FILTERS
+        $user_id = null;
+        $object_id = null;
+        $program_id = null;
+
+        if (Input::has('user_id')) {
+            $obslogs = $obslogs->where('user_id', Input::get('user_id'));
+            $user_id = '&user_id='.Input::get('user_id');
+        }
+        if (Input::has('object_id')) {
+            $obslogs = $obslogs->where('object_id', Input::get('object_id'));
+            $object_id = '&object_id='.Input::get('object_id');
+        }
+        if (Input::has('program_id')) {
+            $obslogs = $obslogs->where('program_id', Input::get('program_id'));
+            $program_id = '&program_id='.Input::get('program_id');
+        }
+
+        $users = User::lists('real_name', 'id');
+        $objects = Object::lists('name', 'id');
+        $programs = Program::lists('name', 'id');
+
+        // PAGINATION
+        $obslogs = $obslogs->paginate(10);
+
+        $pagination = $obslogs->appends(
+                array(
+//                         'game_id'       => Input::get('game_id'),
+//                         'server_id' => Input::get('server_id'),
+//                         'sort'      => Input::get('sort'),
+//                         'order'     => Input::get('order')
+                ))->links();
+
+        $querystr = '&order='.(Input::get('order') == 'asc' || null ? 'desc' : 'asc').$user_id.$object_id.$program_id;
+
+        return View::make('obslogs.index', compact(
+            'obslogs',
+            'pagination',
+            'users',
+            'objects',
+            'programs',
+            'querystr'
+        ));
     }
 
     /**
