@@ -1,45 +1,41 @@
 <?php
 
-class ConditionsTableSeeder extends Seeder {
+class AutoguidersTableSeeder extends Seeder {
 
     public function run()
     {
     	// Uncomment the below to wipe the table clean before populating
-    	DB::table('conditions')->delete();
+    	DB::table('autoguiders')->delete();
 
-        $conditions = array(
+        $autoguiders = array(
                 array(
                         'id' => '1',
-                        'name' => 'Clouds-NoObs',
+                        'name' => 'Jac',
                 ),
                 array(
                         'id' => '2',
-                        'name' => 'Rain-NoObs',
+                        'name' => 'Max',
                 ),
                 array(
                         'id' => '3',
-                        'name' => 'Snow-NoObs',
+                        'name' => 'PHD',
                 ),
                 array(
                         'id' => '4',
-                        'name' => 'To windy-NoObs',
+                        'name' => 'Oth',
                 ),
                 array(
                         'id' => '5',
-                        'name' => 'Poor-ObsDone',
+                        'name' => 'Man',
                 ),
                 array(
                         'id' => '6',
-                        'name' => 'Good-ObsDone',
-                ),
-                array(
-                        'id' => '7',
-                        'name' => 'VeryGood-ObsDone',
+                        'name' => 'Off',
                 ),
         );
 
         // Uncomment the below to run the seeder
-        DB::table('conditions')->insert($conditions);
+        DB::table('autoguiders')->insert($autoguiders);
     }
 
 }

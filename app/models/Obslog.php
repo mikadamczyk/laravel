@@ -1,7 +1,13 @@
 <?php
 
 class Obslog extends Eloquent {
+    
     protected $guarded = array();
+    
+    /**
+     * Ares options
+     */
+    public static $ares = array('off', 'on');
 
     public static $rules = array(
 		'program_id' => 'required',
@@ -46,6 +52,21 @@ class Obslog extends Eloquent {
     public function second_half()
     {
         return $this->belongsTo('Condition');
+    }
+    
+    public function evening_flat()
+    {
+        return $this->belongsTo('Flat');
+    }
+    
+    public function morning_flat()
+    {
+        return $this->belongsTo('Flat');
+    }
+    
+    public function autoguider()
+    {
+        return $this->belongsTo('Autoguider');
     }
     
     

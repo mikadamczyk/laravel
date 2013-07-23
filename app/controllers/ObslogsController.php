@@ -92,7 +92,21 @@ class ObslogsController extends BaseController {
         $filters = Filter::lists('name', 'id');
         $users = User::orderBy('real_name', 'asc')->lists('real_name', 'id');
         $conditions = Condition::orderBy('name', 'asc')->lists('name', 'id');
-        return View::make('obslogs.create', compact('objects', 'programs', 'telescopes', 'detectors', 'filters', 'users', 'conditions'));
+        $flats = Flat::orderBy('name', 'asc')->lists('name', 'id');
+        $autoguiders = Autoguider::orderBy('name', 'asc')->lists('name', 'id');
+        $ares = array_combine(Obslog::$ares, Obslog::$ares);
+        return View::make('obslogs.create', compact(
+                'objects', 
+                'programs', 
+                'telescopes', 
+                'detectors', 
+                'filters', 
+                'users', 
+                'conditions',
+                'flats',
+                'autoguiders',
+                'ares'
+                ));
     }
 
     /**
@@ -147,12 +161,25 @@ class ObslogsController extends BaseController {
         $filters = Filter::lists('name', 'id');
         $users = User::orderBy('real_name', 'asc')->lists('real_name', 'id');
         $conditions = Condition::orderBy('name', 'asc')->lists('name', 'id');
+        $flats = Flat::orderBy('name', 'asc')->lists('name', 'id');
+        $autoguiders = Autoguider::orderBy('name', 'asc')->lists('name', 'id');
         if (is_null($obslog))
         {
             return Redirect::route('obslogs.index');
         }
 
-        return View::make('obslogs.edit', compact('obslog', 'objects', 'programs', 'telescopes', 'detectors', 'filters', 'users', 'conditions'));
+        return View::make('obslogs.edit', compact(
+                'obslog', 
+                'objects', 
+                'programs', 
+                'telescopes', 
+                'detectors', 
+                'filters', 
+                'users', 
+                'conditions',
+                'flats',
+                'autoguiders'
+                ));
     }
 
     /**

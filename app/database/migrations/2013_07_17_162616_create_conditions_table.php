@@ -14,11 +14,11 @@ class CreateConditionsTable extends Migration {
 	{
 		Schema::create('conditions', function(Blueprint $table)
 		{
-            $table->increments('id');
-            $table->integer('deleted');
-			$table->integer('hidden');
-			$table->string('name');
-            $table->timestamps();
+                    $table->increments('id');
+                    $table->integer('deleted');
+                                $table->integer('hidden');
+                                $table->string('name');
+                    $table->timestamps();
 		});
 	}
 

@@ -65,6 +65,9 @@ Route::group(array('before' => 'auth'), function()
     
     Route::resource('messages', 'MessagesController');
 
+    Route::resource('autoguiders', 'AutoguidersController');
+    
+    Route::resource('flats', 'FlatsController');
 });
     
 

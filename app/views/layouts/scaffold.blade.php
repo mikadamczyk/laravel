@@ -12,6 +12,8 @@
         <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
         <link href="{{ URL::asset('assets/css/datepicker.css') }}" rel="stylesheet">
         <script src="{{ URL::asset('assets/js/bootstrap-datepicker.js') }}" ></script>         
+        <link href="{{ URL::asset('assets/css/bootstrap-timepicker.min.css') }}" rel="stylesheet">
+        <script src="{{ URL::asset('assets/js/bootstrap-timepicker.min.js') }}" ></script>         
         <style>
             table form { margin-bottom: 0; }
             form ul { margin-left: 0; list-style: none; }
@@ -41,6 +43,8 @@
                         <li><a href="{{ URL::route('detectors.index') }}"><i></i>Detectors</a></li>
                         <li><a href="{{ URL::route('filters.index') }}"><i></i>Filters</a></li>
                         <li><a href="{{ URL::route('conditions.index') }}"><i></i>Conditions</a></li>
+                        <li><a href="{{ URL::route('autoguiders.index') }}"><i></i>Autoguider options</a></li>
+                        <li><a href="{{ URL::route('flats.index') }}"><i></i>Flat options</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">    

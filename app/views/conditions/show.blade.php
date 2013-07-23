@@ -2,9 +2,9 @@
 
 @section('main')
 
-<h1>Show Filter</h1>
+<h1>Show Condition</h1>
 
-<p>{{ link_to_route('filters.index', 'Return to all filters') }}</p>
+<p>{{ link_to_route('conditions.index', 'Return to all conditions') }}</p>
 
 <table class="table table-striped table-bordered">
     <thead>
@@ -17,12 +17,12 @@
 
     <tbody>
         <tr>
-            <td>{{{ $filter->deleted }}}</td>
-					<td>{{{ $filter->hidden }}}</td>
-					<td>{{{ $filter->name }}}</td>
-                    <td>{{ link_to_route('filters.edit', 'Edit', array($filter->id), array('class' => 'btn btn-info')) }}</td>
+            <td>{{{ $condition->deleted }}}</td>
+					<td>{{{ $condition->hidden }}}</td>
+					<td>{{{ $condition->name }}}</td>
+                    <td>{{ link_to_route('conditions.edit', 'Edit', array($condition->id), array('class' => 'btn btn-info')) }}</td>
                     <td>
-                        {{ Form::open(array('method' => 'DELETE', 'route' => array('filters.destroy', $filter->id))) }}
+                        {{ Form::open(array('method' => 'DELETE', 'route' => array('conditions.destroy', $condition->id))) }}
                             {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
                         {{ Form::close() }}
                     </td>
