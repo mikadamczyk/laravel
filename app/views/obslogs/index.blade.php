@@ -33,6 +33,13 @@ Add new obslog
             <option value="<?php echo $key ?>" <?php echo $selected ?>><?php echo $program ?></option>
         <?php endforeach;?>
     </select>
+    <select name="telescope_id">
+            <option value="">Select Telescope</option>
+        <?php foreach ($telescopes as $key => $telescope):?>
+            <?php $selected = ($key == Input::get('telescope_id')) ? 'selected="selected"' : null; ?>
+            <option value="<?php echo $key ?>" <?php echo $selected ?>><?php echo $telescope ?></option>
+        <?php endforeach;?>
+    </select>
 
     <input class="btn" type="submit" value="Filter" rel="filter">
     </form>
@@ -43,6 +50,7 @@ Add new obslog
                 <th><a href="<?php echo URL::to('obslogs?sort=user_id'.$querystr)?>">User</a></th>
 				<th><a href="<?php echo URL::to('obslogs?sort=object_id'.$querystr)?>">Object</a></th>
 				<th><a href="<?php echo URL::to('obslogs?sort=program_id'.$querystr)?>">Program</a></th>
+				<th><a href="<?php echo URL::to('obslogs?sort=telescope_id'.$querystr)?>">Telescope</a></th>
 				<th>Actions</th>
 				<th>Delete</th>
             </tr>
@@ -52,8 +60,9 @@ Add new obslog
             @foreach ($obslogs as $obslog)
                 <tr>
                     <td>{{{ $obslog->user->email }}}</td>
-					<td>{{{ $obslog->object->name }}}</td>
-					<td>{{{ $obslog->program->name }}}</td>
+                    <td>{{{ $obslog->object->name }}}</td>
+                    <td>{{{ $obslog->program->name }}}</td>
+                    <td>{{{ $obslog->telescope->name }}}</td>
                     <td>
                     <div class="btn-group">
                         {{ link_to_route('obslogs.edit', 'Edit', array($obslog->id), array('class' => 'btn ')) }}

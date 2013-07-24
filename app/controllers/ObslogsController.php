@@ -24,19 +24,21 @@ class ObslogsController extends BaseController {
     {
 //         $obslogs = $this->obslog->all();
         // CACHE SORTING INPUTS
-        $allowed = array('user_id', 'object_id', 'program_id'); // add allowable columns to search on
+        $allowed = array('user_id', 'object_id', 'program_id', 'telescope_id'); // add allowable columns to search on
         $sort = in_array(Input::get('sort'), $allowed) ? Input::get('sort') : 'id'; // if user type in the url a column that doesnt exist app will default to id
         $order = Input::get('order') === 'asc' ? 'asc' : 'desc'; // default desc
 
         $obslogs = Obslog::orderBy($sort, $order)->with('filter')
         ->with('object')
         ->with('user')
-        ->with('program');
+        ->with('program')
+        ->with('telescope');
 
         // FILTERS
         $user_id = null;
         $object_id = null;
         $program_id = null;
+        $telescope_id = null;
 
         if (Input::has('user_id')) {
             $obslogs = $obslogs->where('user_id', Input::get('user_id'));
@@ -50,23 +52,30 @@ class ObslogsController extends BaseController {
             $obslogs = $obslogs->where('program_id', Input::get('program_id'));
             $program_id = '&program_id='.Input::get('program_id');
         }
+        if (Input::has('telescope_id')) {
+            $obslogs = $obslogs->where('telescope_id', Input::get('telescope_id'));
+            $telescope_id = '&telescope_id='.Input::get('telescope_id');
+        }
 
         $users = User::lists('real_name', 'id');
         $objects = Object::lists('name', 'id');
         $programs = Program::lists('name', 'id');
+        $telescopes = Telescope::lists('name', 'id');
 
         // PAGINATION
-        $obslogs = $obslogs->paginate(10);
+        $obslogs = $obslogs->paginate(5);
 
         $pagination = $obslogs->appends(
                 array(
-//                         'game_id'       => Input::get('game_id'),
-//                         'server_id' => Input::get('server_id'),
-//                         'sort'      => Input::get('sort'),
-//                         'order'     => Input::get('order')
+                    'user_id'       => Input::get('user_id'),
+                    'object_id' => Input::get('object_id'),
+                    'program_id' => Input::get('program_id'),
+                    'telescope_id' => Input::get('telescope_id'),
+                    'sort'      => Input::get('sort'),
+                    'order'     => Input::get('order')
                 ))->links();
 
-        $querystr = '&order='.(Input::get('order') == 'asc' || null ? 'desc' : 'asc').$user_id.$object_id.$program_id;
+        $querystr = '&order='.(Input::get('order') == 'asc' || null ? 'desc' : 'asc').$user_id.$object_id.$program_id.$telescope_id;
 
         return View::make('obslogs.index', compact(
             'obslogs',
@@ -74,6 +83,7 @@ class ObslogsController extends BaseController {
             'users',
             'objects',
             'programs',
+            'telescopes',
             'querystr'
         ));
     }
@@ -85,16 +95,16 @@ class ObslogsController extends BaseController {
      */
     public function create()
     {
-        $objects = Object::lists('name', 'id');
-        $programs = Program::lists('name', 'id');
-        $telescopes = Telescope::lists('name', 'id');
-        $detectors = Detector::lists('name', 'id');
-        $filters = Filter::lists('name', 'id');
-        $users = User::orderBy('real_name', 'asc')->lists('real_name', 'id');
-        $conditions = Condition::orderBy('name', 'asc')->lists('name', 'id');
-        $flats = Flat::orderBy('name', 'asc')->lists('name', 'id');
-        $autoguiders = Autoguider::orderBy('name', 'asc')->lists('name', 'id');
-        $ares = array_combine(Obslog::$ares, Obslog::$ares);
+        $objects = array('' => 'Please Select Object') + Object::lists('name', 'id'); 
+        $programs = array('' => 'Please Select Program') + Program::lists('name', 'id');
+        $telescopes = array('' => 'Please Select Telescope') + Telescope::lists('name', 'id');
+        $detectors = array('' => 'Please Select Detector') + Detector::lists('name', 'id');
+        $filters = array('' => 'Please Select Filter') + Filter::lists('name', 'id');
+        $users = array('' => 'Please Select User') + User::orderBy('real_name', 'asc')->lists('real_name', 'id');
+        $conditions = array('' => 'Please Select Condition') + Condition::orderBy('name', 'asc')->lists('name', 'id');
+        $flats = array('' => 'Please Select Flat') + Flat::orderBy('name', 'asc')->lists('name', 'id');
+        $autoguiders = array('' => 'Please Select Autoguider') + Autoguider::orderBy('name', 'asc')->lists('name', 'id');
+        $ares = array('' => 'Please Select ARES') + array_combine(Obslog::$ares, Obslog::$ares);
         return View::make('obslogs.create', compact(
                 'objects', 
                 'programs', 
@@ -122,6 +132,8 @@ class ObslogsController extends BaseController {
         if ($validation->passes())
         {
             $input['user_id'] = Auth::user()->id;
+            unset($input['hour']);
+            unset($input['minute']);
             $this->obslog->create($input);
             return Redirect::route('obslogs.index');
         }
@@ -141,6 +153,16 @@ class ObslogsController extends BaseController {
     public function show($id)
     {
         $obslog = $this->obslog->findOrFail($id);
+//        ->with('object')
+//        ->with('user')
+//        ->with('program')
+//        ->with('telescope')       
+//        ;
+//        $obslogs = Obslog::orderBy($sort, $order)->with('filter')
+//        ->with('object')
+//        ->with('user')
+//        ->with('program')
+//        ->with('telescope');
 
         return View::make('obslogs.show', compact('obslog'));
     }
@@ -196,6 +218,8 @@ class ObslogsController extends BaseController {
         if ($validation->passes())
         {
             $obslog = $this->obslog->find($id);
+            unset($input['hour']);
+            unset($input['minute']);
             $obslog->update($input);
 
             return Redirect::route('obslogs.show', $id);

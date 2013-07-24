@@ -2,7 +2,12 @@
 
 @section('main')
 {{ HTML::script('assets/js/ed2jd.js') }}
-
+<script>
+    $(document).ready(function() {
+        $('#ut_start').timepicker('setTime', '<?php echo $obslog['ut_start']; ?>');
+        $('#ut_stop').timepicker('setTime', '<?php echo $obslog['ut_stop']; ?>');
+    });
+</script>
 <h1>Edit Obslog</h1>
 {{ Form::model($obslog, array('method' => 'PATCH', 'route' => array('obslogs.update', $obslog->id), 'class' => 'form-horizontal')) }}
         <div class="control-group">
@@ -34,18 +39,18 @@
         </div>
 
         <div class="control-group">
-            {{ Form::label('first_half', 'I Half of night:', array('class'=>'control-label')) }}
+            {{ Form::label('firsthalf_id', 'I Half of night:', array('class'=>'control-label')) }}
             <!-- {{ Form::input('number', 'filter_id') }} -->
             <div class="controls">
-                {{ Form::select('first_half', $conditions) }}
+                {{ Form::select('firsthalf_id', $conditions) }}
             </div>
         </div>
 
         <div class="control-group">
-            {{ Form::label('second_half', 'II Half of night:', array('class'=>'control-label')) }}
+            {{ Form::label('secondhalf_id', 'II Half of night:', array('class'=>'control-label')) }}
             <!-- {{ Form::input('number', 'filter_id') }} -->
             <div class="controls">
-                {{ Form::select('second_half', $conditions) }}
+                {{ Form::select('secondhalf_id', $conditions) }}
             </div>
         </div>
 
@@ -53,6 +58,20 @@
             {{ Form::label('obs_hours', 'Total Observing Hours at Night:', array('class'=>'control-label')) }}
             <div class="controls">
                 {{ Form::text('obs_hours') }}
+            </div>
+        </div>
+
+        <div class="control-group">
+            {{ Form::label('eveningflat_id', 'Evening FLAT:', array('class'=>'control-label')) }}
+            <div class="controls">
+                {{ Form::select('eveningflat_id', $flats) }}
+            </div>
+        </div>
+
+        <div class="control-group">
+            {{ Form::label('morningflat_id', 'Morning FLAT:', array('class'=>'control-label')) }}
+            <div class="controls">
+                {{ Form::select('morningflat_id', $flats) }}
             </div>
         </div>
 
@@ -69,6 +88,13 @@
             <!-- {{ Form::input('number', 'program_id') }} -->
             <div class="controls">
                 {{ Form::select('program_id', $programs) }}
+            </div>
+        </div>
+
+        <div class="control-group">
+            {{ Form::label('autoguider_id', 'Autoguider:', array('class'=>'control-label')) }}
+            <div class="controls">
+                {{ Form::select('autoguider_id', $autoguiders) }}
             </div>
         </div>
 
@@ -96,6 +122,29 @@
             </div>
         </div>
         
+        <div class="control-group">
+            {{ Form::label('ut_start', 'UT Start:', array('class'=>'control-label')) }}
+            <div class="controls input-appen bootstrap-timepicker">
+                {{ Form::text('ut_start', '' ,array('class'=>'timepicker-default', 'id'=>'ut_start')) }}
+                <span class="add-on"><i class="icon-time"></i></span>
+            </div>
+        </div>
+
+        <div class="control-group">
+            {{ Form::label('ut_stop', 'UT Stop:', array('class'=>'control-label')) }}
+            <div class="controls input-appen bootstrap-timepicker">
+                {{ Form::text('ut_stop', '' ,array('class'=>'timepicker-default', 'id'=>'ut_stop')) }}
+                <span class="add-on"><i class="icon-time"></i></span>
+            </div>
+        </div>
+
+        <div class="control-group">
+            {{ Form::label('comments', 'Coments for object:', array('class'=>'control-label')) }}
+            <div class="controls">
+                {{ Form::textarea('comments') }}
+            </div>
+        </div>
+
         <div class="control-group">
             <div class="controls">
             {{ Form::submit('Update', array('class' => 'btn btn-info')) }}

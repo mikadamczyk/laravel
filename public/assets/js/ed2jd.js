@@ -1,20 +1,29 @@
 $(document).ready(function() {
     
-    $('.timepicker-default').timepicker();
+    $('#ut_start').timepicker({
+        showSeconds: false,
+        showMeridian: false,
+        minuteStep: 1,
+    });
+    $('#ut_stop').timepicker({
+        showSeconds: false,
+        showMeridian: false,
+        minuteStep: 1,
+    });
     
     $('.datepicker').datepicker({format:'yyyy-mm-dd'})
     .on('changeDate', function(ev){
-        console.log('miko');
+//        console.log('miko');
         timestamp = ev.date.valueOf();
         var date = new Date(timestamp);
-        console.log('miko'+timestamp);
+//        console.log('miko'+timestamp);
         $('#jd').val(EvalJD(date));
     });
     var myDate = $('#ed').val();
     myDate=myDate.split("-");
     var newDate=myDate[1]+"/"+myDate[2]+"/"+myDate[0];
     time = new Date(newDate).getTime();
-    console.log('miko'+time);
+//    console.log('miko'+time);
     var date = new Date(time);
     $('#jd').val(EvalJD(date));
 });

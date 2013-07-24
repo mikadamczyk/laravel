@@ -8,7 +8,7 @@
         <div class="control-group">
             {{ Form::label('ed', 'Evening date:', array('class'=>'control-label')) }}
             <div class="controls">
-                {{ Form::text('ed', '' ,array('class'=>'datepicker')) }}
+                {{ Form::text('ed', date("Y-n-j") ,array('class'=>'datepicker')) }}
             </div>
         </div>
 
@@ -34,16 +34,16 @@
         </div>
 
         <div class="control-group">
-            {{ Form::label('first_half', 'I Half of night:', array('class'=>'control-label')) }}
+            {{ Form::label('firsthalf_id', 'I Half of night:', array('class'=>'control-label')) }}
             <div class="controls">
-                {{ Form::select('first_half', $conditions) }}
+                {{ Form::select('firsthalf_id', $conditions) }}
             </div>
         </div>
 
         <div class="control-group">
-            {{ Form::label('second_half', 'II Half of night:', array('class'=>'control-label')) }}
+            {{ Form::label('secondhalf_id', 'II Half of night:', array('class'=>'control-label')) }}
             <div class="controls">
-                {{ Form::select('second_half', $conditions) }}
+                {{ Form::select('secondhalf_id', $conditions) }}
             </div>
         </div>
 
@@ -76,16 +76,16 @@
         </div>
 
         <div class="control-group">
-            {{ Form::label('evening_flat_id', 'Evening FLAT:', array('class'=>'control-label')) }}
+            {{ Form::label('eveningflat_id', 'Evening FLAT:', array('class'=>'control-label')) }}
             <div class="controls">
-                {{ Form::select('evening_flat_id', $flats) }}
+                {{ Form::select('eveningflat_id', $flats) }}
             </div>
         </div>
 
         <div class="control-group">
-            {{ Form::label('morning_flat_id', 'Morning FLAT:', array('class'=>'control-label')) }}
+            {{ Form::label('morningflat_id', 'Morning FLAT:', array('class'=>'control-label')) }}
             <div class="controls">
-                {{ Form::select('morning_flat_id', $flats) }}
+                {{ Form::select('morningflat_id', $flats) }}
             </div>
         </div>
 
@@ -126,17 +126,20 @@
 
         <div class="control-group">
             {{ Form::label('ut_start', 'UT Start:', array('class'=>'control-label')) }}
-            <div class="controls input-append bootstrap-timepicker">
-                {{ Form::text('ut_start', '' ,array('class'=>'timepicker-default', 'id'=>'timepicker1')) }}
+            <div class="controls input-appen bootstrap-timepicker">
+                {{ Form::text('ut_start', '' ,array('class'=>'timepicker-default', 'id'=>'ut_start')) }}
                 <span class="add-on"><i class="icon-time"></i></span>
             </div>
         </div>
 
+        <div class="control-group">
+            {{ Form::label('ut_stop', 'UT Stop:', array('class'=>'control-label')) }}
+            <div class="controls input-appen bootstrap-timepicker">
+                {{ Form::text('ut_stop', '' ,array('class'=>'timepicker-default', 'id'=>'ut_stop')) }}
+                <span class="add-on"><i class="icon-time"></i></span>
+            </div>
+        </div>
  
-<script type="text/javascript">
-$('#timepicker1').timepicker();
-</script>
-
         <div class="control-group">
             {{ Form::label('comments', 'Coments for object:', array('class'=>'control-label')) }}
             <div class="controls">
@@ -146,7 +149,8 @@ $('#timepicker1').timepicker();
 
         <div class="control-group">
             <div class="controls">
-            {{ Form::submit('Submit', array('class' => 'btn')) }}
+            {{ Form::submit('Submit', array('class' => 'btn btn-info')) }}
+            {{ link_to_route('obslogs.index', 'Cancel', null, array('class' => 'btn')) }}
             </div>
         </div>
 

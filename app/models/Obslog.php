@@ -44,22 +44,22 @@ class Obslog extends Eloquent {
         return $this->belongsTo('Filter');
     }
     
-    public function first_half()
+    public function firsthalf()
     {
         return $this->belongsTo('Condition');
     }
     
-    public function second_half()
+    public function secondhalf()
     {
         return $this->belongsTo('Condition');
     }
     
-    public function evening_flat()
+    public function eveningflat()
     {
         return $this->belongsTo('Flat');
     }
     
-    public function morning_flat()
+    public function morningflat()
     {
         return $this->belongsTo('Flat');
     }
@@ -68,6 +68,5 @@ class Obslog extends Eloquent {
     {
         return $this->belongsTo('Autoguider');
     }
-    
     
 }
