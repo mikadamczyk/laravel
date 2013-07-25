@@ -4,29 +4,33 @@
 
 <h1>Create Autoguider</h1>
 
-{{ Form::open(array('route' => 'autoguiders.store')) }}
-    <ul>
-        <li>
-            {{ Form::label('deleted', 'Deleted:') }}
-            <!-- {{ Form::input('number', 'deleted') }} -->
-            {{ Form::checkbox('deleted', '1') }}
-        </li>
+{{ Form::open(array('route' => 'autoguiders.store', 'class' => 'form-horizontal')) }}
+<!--        <div class="control-group">
+            {{ Form::label('deleted', 'Deleted:', array('class'=>'control-label')) }}
+            <div class="controls">
+                {{ Form::checkbox('deleted', '1') }}
+            </div>
+        </div>-->
+        <div class="control-group">
+            {{ Form::label('name', 'Name:', array('class'=>'control-label')) }}
+            <div class="controls">
+                {{ Form::text('name') }}
+            </div>
+        </div>  
 
-        <li>
-            {{ Form::label('hidden', 'Hidden:') }}
-            <!-- {{ Form::input('number', 'hidden') }} -->
-            {{ Form::checkbox('hidden', '1') }}
-        </li>
+        <div class="control-group">
+            {{ Form::label('hidden', 'Hidden:', array('class'=>'control-label')) }}
+            <div class="controls">
+                {{ Form::checkbox('hidden', '1') }}
+            </div>
+        </div>            
 
-        <li>
-            {{ Form::label('name', 'Name:') }}
-            {{ Form::text('name') }}
-        </li>
-
-        <li>
-            {{ Form::submit('Submit', array('class' => 'btn')) }}
-        </li>
-    </ul>
+        <div class="control-group">
+            <div class="controls">
+            {{ Form::submit('Create', array('class' => 'btn btn-info')) }}
+            {{ link_to_route('autoguiders.index', 'Cancel', null, array('class' => 'btn')) }}
+            </div>
+        </div>
 {{ Form::close() }}
 
 @if ($errors->any())

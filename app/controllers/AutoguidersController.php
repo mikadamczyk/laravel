@@ -133,4 +133,11 @@ class AutoguidersController extends BaseController {
         return Redirect::route('autoguiders.index');
     }
 
+//    public function toogle($id)
+//    {
+//        $autoguider = $this->autoguider->find($id);
+//        $autoguider->update(array('hidden'=>!$autoguider->hidden));
+//        return Response::json(array( 'message'=>'success!', 'actual'=> !$autoguider->hidden));
+//    }
+    
 }

@@ -10,6 +10,8 @@ class TechlogsTableSeeder extends Seeder {
         $techlogs = array(
                 array(
                         'id' => '1',
+                        'ed' => '2013-07-25',
+                        'jd' => '2456499',
                         'user_id' => '1',
                         'device_id' => '1',
                         'type_id' => '1',
@@ -20,6 +22,8 @@ class TechlogsTableSeeder extends Seeder {
                 ),
                 array(
                         'id' => '2',
+                        'ed' => '2013-07-26',
+                        'jd' => '2456500',                    
                         'user_id' => '2',
                         'device_id' => '2',
                         'type_id' => '2',
@@ -30,6 +34,8 @@ class TechlogsTableSeeder extends Seeder {
                 ),
                 array(
                         'id' => '3',
+                        'ed' => '2013-07-27',
+                        'jd' => '2456501',                    
                         'user_id' => '3',
                         'device_id' => '3',
                         'type_id' => '3',

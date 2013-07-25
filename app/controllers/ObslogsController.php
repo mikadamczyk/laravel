@@ -103,7 +103,7 @@ class ObslogsController extends BaseController {
         $users = array('' => 'Please Select User') + User::orderBy('real_name', 'asc')->lists('real_name', 'id');
         $conditions = array('' => 'Please Select Condition') + Condition::orderBy('name', 'asc')->lists('name', 'id');
         $flats = array('' => 'Please Select Flat') + Flat::orderBy('name', 'asc')->lists('name', 'id');
-        $autoguiders = array('' => 'Please Select Autoguider') + Autoguider::orderBy('name', 'asc')->lists('name', 'id');
+        $autoguiders = array('' => 'Please Select Autoguider') + Autoguider::orderBy('name', 'asc')->where('hidden',0)->lists('name', 'id');
         $ares = array('' => 'Please Select ARES') + array_combine(Obslog::$ares, Obslog::$ares);
         return View::make('obslogs.create', compact(
                 'objects', 

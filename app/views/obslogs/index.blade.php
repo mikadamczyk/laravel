@@ -48,11 +48,11 @@ Add new obslog
         <thead>
             <tr>
                 <th><a href="<?php echo URL::to('obslogs?sort=user_id'.$querystr)?>">User</a></th>
-				<th><a href="<?php echo URL::to('obslogs?sort=object_id'.$querystr)?>">Object</a></th>
-				<th><a href="<?php echo URL::to('obslogs?sort=program_id'.$querystr)?>">Program</a></th>
-				<th><a href="<?php echo URL::to('obslogs?sort=telescope_id'.$querystr)?>">Telescope</a></th>
-				<th>Actions</th>
-				<th>Delete</th>
+                <th><a href="<?php echo URL::to('obslogs?sort=object_id'.$querystr)?>">Object</a></th>
+                <th><a href="<?php echo URL::to('obslogs?sort=program_id'.$querystr)?>">Program</a></th>
+                <th><a href="<?php echo URL::to('obslogs?sort=telescope_id'.$querystr)?>">Telescope</a></th>
+                <th>Actions</th>
+                <th>Delete</th>
             </tr>
         </thead>
 

@@ -29,6 +29,8 @@ Route::group(array('before' => 'auth'), function()
     });
     Route::get('messages/stick/{id}', array('as' => 'stick', 'before' => 'auth', 'uses' => 'MessagesController@stick'));
     Route::get('messages/unstick/{id}', array('as' => 'unstick', 'before' => 'auth', 'uses' => 'MessagesController@unstick'));
+//    Route::post('autoguiders/toogle/{id}', array('as' => 'hide', 'before' => 'auth', 'uses' => 'AutoguidersController@toogle'));
+    Route::post('dictionary/toogle/{id}/{objectType}', array('as' => 'toogleObj', 'before' => 'auth', 'uses' => 'DictionaryController@toogle'));
 //     Route::post('messages/stick/{id}', array('as' => 'stick', 'before' => 'auth', function($id)
 //     {
 // //         return 'Hello World'.$id;

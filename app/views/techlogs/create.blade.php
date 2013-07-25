@@ -1,64 +1,76 @@
 @extends('layouts.scaffold')
 
 @section('main')
-<script type="text/javascript">
-$(document).ready(function() {
-    $('.datepicker').datepicker()
-});
-</script>
+{{ HTML::script('assets/js/ed2jd.js') }}
 <h1>Create Techlog</h1>
 
-{{ Form::open(array('route' => 'techlogs.store')) }}
-    <ul>
-        <li>
-            {{ Form::label('ed', 'Evening date:') }}
-            {{ Form::text('ed', '' ,array('class'=>'datepicker')) }}
-        </li>
-        <li>
-            {{ Form::label('jd', 'JD:') }}
-            {{ Form::input('number', 'jd') }}
-        </li>
-        <li>
-            {{ Form::label('user_id', 'User:') }}
-            <!-- {{ Form::input('number', 'user_id') }} -->
-            {{ Form::select('user_id', $users, Auth::user()->id) }}
-        </li>
+{{ Form::open(array('route' => 'techlogs.store', 'class' => 'form-horizontal')) }}
+        <div class="control-group">
+            {{ Form::label('ed', 'Evening date:', array('class'=>'control-label')) }}
+            <div class="controls">
+            {{ Form::text('ed', date("Y-n-j") ,array('class'=>'datepicker')) }}
+            </div>
+        </div>
+                <div class="control-group">
+            {{ Form::label('jd', 'JD:', array('class'=>'control-label')) }}
+            <div class="controls">
+                {{ Form::input('number', 'jd') }}
+            </div>
+        </div>    
+        <div class="control-group">
+            {{ Form::label('user_id', 'User:', array('class'=>'control-label')) }}
+            <div class="controls">
+                {{ Form::select('user_id', $users, Auth::user()->id) }}
+            </div>
+        </div>
 
-        <li>
-            {{ Form::label('device_id', 'Device:') }}
-            <!-- {{ Form::input('number', 'device_id') }} -->
+        <div class="control-group">
+            {{ Form::label('device_id', 'Device:', array('class'=>'control-label')) }}
+            <div class="controls">
             {{ Form::select('device_id', $devices) }}
-        </li>
+            </div>
+        </div>
 
-        <li>
-            {{ Form::label('type_id', 'Type:') }}
-            <!-- {{ Form::input('number', 'type_id') }} -->
+        <div class="control-group">
+            {{ Form::label('type_id', 'Type:', array('class'=>'control-label')) }}
+            <div class="controls">
             {{ Form::select('type_id', $types) }}
-        </li>
+            </div>
+        </div>
 
-        <li>
-            {{ Form::label('title', 'Title:') }}
+        <div class="control-group">
+            {{ Form::label('title', 'Title:', array('class'=>'control-label')) }}
+            <div class="controls">
             {{ Form::text('title') }}
-        </li>
+            </div>
+        </div>
 
-        <li>
-            {{ Form::label('description', 'Description:') }}
+        <div class="control-group">
+            {{ Form::label('description', 'Description:', array('class'=>'control-label')) }}
+            <div class="controls">
             {{ Form::textarea('description') }}
-        </li>
+            </div>
+        </div>
 
-        <li>
-            {{ Form::label('try_to_fix', 'Try_to_fix:') }}
+        <div class="control-group">
+            {{ Form::label('try_to_fix', 'Try_to_fix:', array('class'=>'control-label')) }}
+            <div class="controls">
             {{ Form::textarea('try_to_fix') }}
-        </li>
+            </div>
+        </div>
 
-        <li>
-            {{ Form::label('remarks', 'Remarks:') }}
+        <div class="control-group">
+            {{ Form::label('remarks', 'Remarks:', array('class'=>'control-label')) }}
+            <div class="controls">
             {{ Form::textarea('remarks') }}
-        </li>
+            </div>
+        </div>
 
-        <li>
+        <div class="control-group">
+            <div class="controls">
             {{ Form::submit('Submit', array('class' => 'btn')) }}
-        </li>
+            </div>
+        </div>
     </ul>
 {{ Form::close() }}
 

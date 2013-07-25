@@ -14,24 +14,26 @@ Add new autoguider
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
-                <th>Deleted</th>
-				<th>Hidden</th>
-				<th>Name</th>
+		<th>Name</th>
+		<th>Hidden in lists</th>
+		<th>Action</th>
             </tr>
         </thead>
 
         <tbody>
             @foreach ($autoguiders as $autoguider)
                 <tr>
-                    <td>{{{ $autoguider->deleted }}}</td>
-					<td>{{{ $autoguider->hidden }}}</td>
-					<td>{{{ $autoguider->name }}}</td>
-                    <td>{{ link_to_route('autoguiders.edit', 'Edit', array($autoguider->id), array('class' => 'btn btn-info')) }}</td>
+                    <td>{{{ $autoguider->name }}}</td>
+                    <td class="hiddenCol">{{{ $autoguider->hidden ? 'Yes' : 'No' }}}</td>
                     <td>
+                        {{ link_to_route('autoguiders.edit', 'Edit', array($autoguider->id), array('class' => 'btn btn-info')) }}
+                        {{ link_to_route('toogleObj', $autoguider->hidden ? 'Show' : 'Hide', array($autoguider->id, 'autoguider'), array('class' => 'ajax-link btn btn-primary')) }}
+                    </td>
+<!--                    <td>
                         {{ Form::open(array('method' => 'DELETE', 'route' => array('autoguiders.destroy', $autoguider->id))) }}
                             {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
                         {{ Form::close() }}
-                    </td>
+                    </td>-->
                 </tr>
             @endforeach
         </tbody>
