@@ -14,7 +14,7 @@
         <script src="{{ URL::asset('assets/js/bootstrap-datepicker.js') }}" ></script>         
         <link href="{{ URL::asset('assets/css/bootstrap-timepicker.min.css') }}" rel="stylesheet">
         <script src="{{ URL::asset('assets/js/bootstrap-timepicker.min.js') }}" ></script>         
-        <script src="{{ URL::asset('assets/js/global.js') }}" ></script>         
+        <script src="{{ URL::asset('assets/js/main.js') }}" ></script>         
         <style>
             table form { margin-bottom: 0; }
             form ul { margin-left: 0; list-style: none; }

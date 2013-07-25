@@ -50,7 +50,7 @@ class UsersController extends \BaseController {
         if ($validation->passes())
         {
 //             $input['user_id'] = Auth::user()->id;
-        	$input['password'] = Hash::make(Input::get('password'));
+            $input['password'] = Hash::make(Input::get('password'));
             $this->user->create($input);
             return Redirect::route('users.index');
         }
@@ -107,6 +107,7 @@ class UsersController extends \BaseController {
         if ($validation->passes())
         {
             $user = $this->user->find($id);
+            $input['password'] = Hash::make(Input::get('password'));
             $user->update($input);
 
             return Redirect::route('users.show', $id);
